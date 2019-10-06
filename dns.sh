@@ -4,7 +4,7 @@
 TIME=$(date +%Y-%m-%d_%H-%M-%S)
 token="Digital Ocean API token"
 domain="example.com"
-subdomain="home"
+subdomain="home" #This is the subdomain!
 
 ip=$(curl --silent ipinfo.io/ip)
 record_id=$(curl --silent --request GET --header "Content-Type: application/json" --header "Authorization: Bearer $token" "https://api.digitalocean.com/v2/domains/$domain/records" | jq ".[] | . [] | select(.name==\"${subdomain}\")" 2>/dev/null | grep "id" | sed --regexp-extended "s/[^0-9]//g")
